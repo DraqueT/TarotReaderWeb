@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>ROTATO</title>
+        <script>
+            var rot = 10;
+            var xMov = 0;
+            var yMov = 0;
+            
+            function rotato() {
+                const rotated = document.getElementById('rotated');
+                rotated.style.transform = 'rotate(' + rot + 'deg)';
+                rot += 10;
+            }
+            
+            function moveX() {
+                const rotated = document.getElementById('rotated');
+                rotated.style.left = xMov + 'px';
+                xMov += 10;
+            }
+            
+            function moveY() {
+                const rotated = document.getElementById('rotated');
+                rotated.style.top = yMov + 'px';
+                yMov += 10;
+            }
+            
+        </script>
+    </head>
+    
+    <body>
+    <div style="margin: 8px">
+      <img src="images/me.jpg" width="300" />      <!-- The image element to rotate -->
+      <img id="rotated" style="position:absolute;" src="images/me.jpg" width="300" />
+      <br>
+      <button onclick="rotato()">ROTATE</button>
+      <button onclick="moveX()">MOAVE-X</button>
+      <button onclick="moveY()">MOAVE-Y</button>
+    </div>
+  </body>
+</html>

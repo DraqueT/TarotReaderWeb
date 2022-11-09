@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Spread>
+    <SpreadAttributes>
+        <SpreadName>
+            
+        </SpreadName>
+        
+        <SpreadDescription>
+            
+        </SpreadDescription>
+
+        <!--Uniqueness requied- used to identify this spread and its positions within decks for specialized/contextual reading text-->
+        <SpreadId>
+            
+        </SpreadId>
+
+        <!--ISO 639-2 Code-->
+        <Language>
+            eng
+        </Language>
+
+        <SpreadAuthor>
+            
+        </SpreadAuthor>
+
+        <CopyrightDate>
+            
+        </CopyrightDate>
+        
+		 <!--Size of cards as they appear on table (typical tarot cards have a size ratio of 12 by 7)-->
+        <CardSizeVertical>
+        	12.0
+        </CardSizeVertical>
+        
+        <CardSizeHorizontal>
+        	7.0
+        </CardSizeHorizontal>
+    </SpreadAttributes>
+    
+    <!--each position represents one card placement-->
+    <Positions>
+        <Position>
+            <!--Significator, future, past, final outcome, etc-->
+            <PositionName>
+                
+            </PositionName>
+            
+            <!-- If true, option exists for user to select significator from court cards before reading (also means your deck must contain court cards) -->
+            <Significator>
+            	false
+            </Significator>
+            
+            <!--Positions must be sequential. This serves as the position's id. Non-sqeuntial positions in this XML file will lead to errors when loading-->
+            <!--Also represents the order in which the positions are read. Starts at 0-->
+            <Order>
+                0
+            </Order>
+            
+            <!-- Whether a card should be dealt face down (face up otherwise) -->
+            <StartFaceDown>
+            	true
+            </StartFaceDown>
+            
+            <!--This is the text read as an explanation before the card here is revealed.-->
+            <PositionDescription>
+                
+            </PositionDescription>
+            
+            <!--spatial position on the table of card's center (by percentage of table)-->
+            <HorizontalPosition>
+            	0
+            </HorizontalPosition>
+            <VerticalPosition>
+            	0
+            </VerticalPosition>
+            
+            <!-- Rotation is in degrees -->
+            <Rotation>
+            	0
+            </Rotation>
+        </Position>
+    </Positions>
+</Spread>

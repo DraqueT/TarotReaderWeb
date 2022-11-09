@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Spread>
+    <SpreadAttributes>
+        <SpreadName>
+            Celtic Cross
+        </SpreadName>
+        
+        <SpreadDescription>
+            The Celtic Cross is the spread most associated with modern Tarot reaidings and cartomancy generally. There are many, many variations on it. The order of positions read, specific meanings, and even number of positions may vary between different readers with different styles.
+        </SpreadDescription>
+
+        <!--Uniqueness requied (include your name or handle here to help with that)-->
+        <SpreadId>
+            CELTIC_CROSS_DRAQUE_ENG
+        </SpreadId>
+
+        <!--ISO 639-2 Code-->
+        <Language>
+            eng
+        </Language>
+
+        <SpreadAuthor>
+            Draque Thompson
+        </SpreadAuthor>
+
+        <CopyrightDate>
+            January 1st 2021
+        </CopyrightDate>
+        
+        <!--Size of cards as they appear on table (typical tarot cards have a ratio of 12 by 7)-->
+        <CardSizeVertical>
+        	12.0
+        </CardSizeVertical>
+        
+        <CardSizeHorizontal>
+        	7.0
+        </CardSizeHorizontal>
+    </SpreadAttributes>
+    
+    <Positions>
+        <Position>
+            <PositionName>
+                Significator
+            </PositionName>
+            
+            <Significator>
+            	true
+            </Significator>
+            
+			<StartFaceDown>
+            	false
+            </StartFaceDown>
+            
+            <!--Positions must be sequential. This serves as the position's id. Non-sqeuntial positions in this XML file will lead to errors when loading-->
+            <Order>
+                0
+            </Order>
+            
+            <PositionDescription>
+                This position is the significator. It represents you, the querent through this reading. Its suit and its position within the suit's court may add context to cards drawn.
+            </PositionDescription>
+            
+             <!--spatial position on the table of card's center (int value by percentage of table)-->
+            <HorizontalPosition>
+            	35
+            </HorizontalPosition>
+            <VerticalPosition>
+            	50
+            </VerticalPosition>
+            <Rotation>
+            	0
+            </Rotation>
+        </Position>
+        
+        <Position>
+            <PositionName>
+                Cover
+            </PositionName>
+            
+			<StartFaceDown>
+            	true
+            </StartFaceDown>
+            
+            <!--Positions must be sequential. This serves as the position's id. Non-sqeuntial positions in this XML file will lead to errors when loading-->
+            <Order>
+                1
+            </Order>
+            
+            <PositionDescription>
+                TEST TEXT
+            </PositionDescription>
+            
+             <!--spatial position on the table of card's center (int value by percentage of table)-->
+            <HorizontalPosition>
+            	37
+            </HorizontalPosition>
+            <VerticalPosition>
+            	52
+            </VerticalPosition>
+            <Rotation>
+            	0
+            </Rotation>
+        </Position>
+        
+         <Position>
+            <PositionName>
+                Cross
+            </PositionName>
+            
+			<StartFaceDown>
+            	true
+            </StartFaceDown>
+            
+            <!--Positions must be sequential. This serves as the position's id. Non-sqeuntial positions in this XML file will lead to errors when loading-->
+            <Order>
+                2
+            </Order>
+            
+            <PositionDescription>
+                TEST TEXT
+            </PositionDescription>
+            
+             <!--spatial position on the table of card's center (int value by percentage of table)-->
+            <HorizontalPosition>
+            	35
+            </HorizontalPosition>
+            <VerticalPosition>
+            	50
+            </VerticalPosition>
+            <Rotation>
+            	90
+            </Rotation>
+        </Position>
+        
+        <Position>
+            <PositionName>
+                Cross
+            </PositionName>
+            
+			<StartFaceDown>
+            	true
+            </StartFaceDown>
+            
+            <!--Positions must be sequential. This serves as the position's id. Non-sqeuntial positions in this XML file will lead to errors when loading-->
+            <Order>
+                3
+            </Order>
+            
+            <PositionDescription>
+                TEST TEXT
+            </PositionDescription>
+            
+             <!--spatial position on the table of card's center (int value by percentage of table)-->
+            <HorizontalPosition>
+            	35
+            </HorizontalPosition>
+            <VerticalPosition>
+            	50
+            </VerticalPosition>
+            <Rotation>
+            	90
+            </Rotation>
+        </Position>
+        
+        <Position>
+            <PositionName>
+                Support
+            </PositionName>
+            
+			<StartFaceDown>
+            	true
+            </StartFaceDown>
+            
+            <!--Positions must be sequential. This serves as the position's id. Non-sqeuntial positions in this XML file will lead to errors when loading-->
+            <Order>
+                4
+            </Order>
+            
+            <PositionDescription>
+                TEST TEXT
+            </PositionDescription>
+            
+             <!--spatial position on the table of card's center (int value by percentage of table)-->
+            <HorizontalPosition>
+            	35
+            </HorizontalPosition>
+            <VerticalPosition>
+            	70
+            </VerticalPosition>
+            <Rotation>
+            	0
+            </Rotation>
+        </Position>
+        
+        <Position>
+            <PositionName>
+                Immediate Past
+            </PositionName>
+            
+			<StartFaceDown>
+            	true
+            </StartFaceDown>
+            
+            <!--Positions must be sequential. This serves as the position's id. Non-sqeuntial positions in this XML file will lead to errors when loading-->
+            <Order>
+                5
+            </Order>
+            
+            <PositionDescription>
+                TEST TEXT
+            </PositionDescription>
+            
+             <!--spatial position on the table of card's center (int value by percentage of table)-->
+            <HorizontalPosition>
+            	20
+            </HorizontalPosition>
+            <VerticalPosition>
+            	50
+            </VerticalPosition>
+            <Rotation>
+            	0
+            </Rotation>
+        </Position>
+        
+        <Position>
+            <PositionName>
+                Crown
+            </PositionName>
+            
+			<StartFaceDown>
+            	true
+            </StartFaceDown>
+            
+            <!--Positions must be sequential. This serves as the position's id. Non-sqeuntial positions in this XML file will lead to errors when loading-->
+            <Order>
+                6
+            </Order>
+            
+            <PositionDescription>
+                TEST TEXT
+            </PositionDescription>
+            
+             <!--spatial position on the table of card's center (int value by percentage of table)-->
+            <HorizontalPosition>
+            	35
+            </HorizontalPosition>
+            <VerticalPosition>
+            	30
+            </VerticalPosition>
+            <Rotation>
+            	0
+            </Rotation>
+        </Position>
+        
+        <Position>
+            <PositionName>
+                Immediate Future
+            </PositionName>
+            
+			<StartFaceDown>
+            	true
+            </StartFaceDown>
+            
+            <!--Positions must be sequential. This serves as the position's id. Non-sqeuntial positions in this XML file will lead to errors when loading-->
+            <Order>
+                7
+            </Order>
+            
+            <PositionDescription>
+                TEST TEXT
+            </PositionDescription>
+            
+             <!--spatial position on the table of card's center (int value by percentage of table)-->
+            <HorizontalPosition>
+            	50
+            </HorizontalPosition>
+            <VerticalPosition>
+            	50
+            </VerticalPosition>
+            <Rotation>
+            	0
+            </Rotation>
+        </Position>
+        
+        <Position>
+            <PositionName>
+                Fears
+            </PositionName>
+            
+			<StartFaceDown>
+            	true
+            </StartFaceDown>
+            
+            <!--Positions must be sequential. This serves as the position's id. Non-sqeuntial positions in this XML file will lead to errors when loading-->
+            <Order>
+                8
+            </Order>
+            
+            <PositionDescription>
+                TEST TEXT
+            </PositionDescription>
+            
+             <!--spatial position on the table of card's center (int value by percentage of table)-->
+            <HorizontalPosition>
+            	65
+            </HorizontalPosition>
+            <VerticalPosition>
+            	80
+            </VerticalPosition>
+            <Rotation>
+            	45
+            </Rotation>
+        </Position>
+        
+        <Position>
+            <PositionName>
+                Family Influence
+            </PositionName>
+            
+			<StartFaceDown>
+            	true
+            </StartFaceDown>
+            
+            <!--Positions must be sequential. This serves as the position's id. Non-sqeuntial positions in this XML file will lead to errors when loading-->
+            <Order>
+                9
+            </Order>
+            
+            <PositionDescription>
+                TEST TEXT
+            </PositionDescription>
+            
+             <!--spatial position on the table of card's center (int value by percentage of table)-->
+            <HorizontalPosition>
+            	65
+            </HorizontalPosition>
+            <VerticalPosition>
+            	60
+            </VerticalPosition>
+            <Rotation>
+            	45
+            </Rotation>
+        </Position>
+        
+        <Position>
+            <PositionName>
+                Family Influence
+            </PositionName>
+            
+			<StartFaceDown>
+            	true
+            </StartFaceDown>
+            
+            <!--Positions must be sequential. This serves as the position's id. Non-sqeuntial positions in this XML file will lead to errors when loading-->
+            <Order>
+                10
+            </Order>
+            
+            <PositionDescription>
+                TEST TEXT
+            </PositionDescription>
+            
+             <!--spatial position on the table of card's center (int value by percentage of table)-->
+            <HorizontalPosition>
+            	65
+            </HorizontalPosition>
+            <VerticalPosition>
+            	40
+            </VerticalPosition>
+            <Rotation>
+            	45
+            </Rotation>
+        </Position>
+        
+        <Position>
+            <PositionName>
+                Fears
+            </PositionName>
+            
+			<StartFaceDown>
+            	true
+            </StartFaceDown>
+            
+            <!--Positions must be sequential. This serves as the position's id. Non-sqeuntial positions in this XML file will lead to errors when loading-->
+            <Order>
+                11
+            </Order>
+            
+            <PositionDescription>
+                TEST TEXT
+            </PositionDescription>
+            
+             <!--spatial position on the table of card's center (int value by percentage of table)-->
+            <HorizontalPosition>
+            	65
+            </HorizontalPosition>
+            <VerticalPosition>
+            	20
+            </VerticalPosition>
+            <Rotation>
+            	45
+            </Rotation>
+        </Position>
+    </Positions>
+</Spread>

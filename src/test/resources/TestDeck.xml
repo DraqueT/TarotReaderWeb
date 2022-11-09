@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Deck>
+    <DeckAttributes>
+    	<!--TEST COMMENTS DON'T CRASH THINGS-->
+        <DeckName>
+            TestDeck
+        </DeckName>
+        
+        <DeckId>
+            TESTO_MCBESTO
+        </DeckId>
+        
+        <DeckDescription>
+            THIS IS A TEST DECK. HOORAY.
+        </DeckDescription>
+        
+        <Language>
+            eng
+        </Language>
+        
+        <FileAuthor>
+            ZIM ZAM M'BAM
+        </FileAuthor>
+
+        <FileCopyrightDate>
+            6/6/1966
+        </FileCopyrightDate>
+ 
+        <DeckAuthor>
+            Poopo M'goo
+        </DeckAuthor>
+        <DeckCopyrightDate>
+            Tomorrow
+        </DeckCopyrightDate>
+        
+        <DeckBackAsset type='png'>
+            pralg_BACK.jpg
+        </DeckBackAsset>
+    </DeckAttributes>
+    
+    <DeckKeywordDescriptions>
+    	<DeckKeywordDescription>
+    		<DeckKeyword>
+    			woerm
+    		</DeckKeyword>
+    		<DeckKeywordText>
+    			cleans your woerm of sin wash it away
+    		</DeckKeywordText>
+    	</DeckKeywordDescription>
+    	<DeckKeywordDescription>
+    		<DeckKeyword>
+    			butt
+    		</DeckKeyword>
+    		<DeckKeywordText>
+    			big ol' sweatybutt
+    		</DeckKeywordText>
+    	</DeckKeywordDescription>
+    </DeckKeywordDescriptions>
+    
+    <Suits>
+        <Suit arcana="true">
+            <SuitName>
+                PURDY PIXURES
+            </SuitName>
+            
+            <SuitId>
+                0
+            </SuitId>
+            
+            <ShortDescription>
+                SHORT DESCRIPTION PURDY
+            </ShortDescription>
+            
+            <SuitDescription>
+                PURDY AND GUD
+            </SuitDescription>
+        </Suit>
+        <Suit arcana="true">
+            <SuitName>
+                up
+            </SuitName>
+            
+            <SuitId>
+                1
+            </SuitId>
+            
+            <ShortDescription>
+                up stuff
+            </ShortDescription>
+            
+            <SuitDescription>
+                dis da suit that goes up
+            </SuitDescription>
+        </Suit>
+        <Suit arcana="true">
+            <SuitName>
+                down
+            </SuitName>
+            
+            <SuitId>
+                2
+            </SuitId>
+            
+            <ShortDescription>
+                dis da suit dat goes down
+            </ShortDescription>
+            
+            <SuitDescription>
+                DOOOOOOOOOOOOOOOOWWWWWWWWWWWWWWWWWN
+            </SuitDescription>
+        </Suit>
+    </Suits>
+    
+    <Cards>
+        <Card court="false">
+            <CardNumber>
+                0
+            </CardNumber>
+            <CardSuitId>
+                0
+            </CardSuitId>
+            
+            <CardName>
+                normal card
+            </CardName>
+            
+            <ShortDescription>
+                normal short description
+            </ShortDescription>
+            
+            <LongDescription>
+                normal long description
+            </LongDescription>
+            
+            <ReadingText>
+                READ DIS
+            </ReadingText>
+            
+            <InvertedReadingText>
+                normal inverted text
+            </InvertedReadingText>
+            
+            <CardFrontAsset type='png'>
+                glarp_FRONT.png
+            </CardFrontAsset>
+            
+            <CardReadingRelations>
+          		<CardKeywords>
+          			Zim, Zam,     m'bam  and  , thank you ma'am
+    		    </CardKeywords>
+    		    
+                <RelatedSuits>
+                    <Suit>
+                    	0
+                    </Suit>
+                    <Suit>
+                    	1
+                    </Suit>
+                </RelatedSuits>
+                
+                <RelatedCards>
+                    <CardRelation>
+                        <CardNumberRelation>
+                            1
+                        </CardNumberRelation>
+                        <CardSuitRelation>
+                            0
+                        </CardSuitRelation>
+                        <ReadingText>
+                            READ MY RELATED TEXT?!
+                        </ReadingText>
+                        <InvertedReadingText>
+                        	YOUR FATE IS SEALED.
+                        </InvertedReadingText>
+                    </CardRelation>
+                    <CardRelation>
+                        <CardNumberRelation>
+                            6
+                        </CardNumberRelation>
+                        <CardSuitRelation>
+                            7
+                        </CardSuitRelation>
+                        <ReadingText>
+                            ZOOBLE
+                        </ReadingText>
+                        
+                        <InvertedReadingText>
+                        	BOOBLE
+                        </InvertedReadingText>
+                    </CardRelation>
+                </RelatedCards>
+                
+                <PositionRelations>
+                    <PositionRelation>
+                        <SpreadIdRelation>
+                        	Mystic_Butt
+                        </SpreadIdRelation>
+                        
+                        <PositionIdRelation>
+                            4
+                        </PositionIdRelation>
+                        <ReadingText>
+                        	READ MY MYSTIC BUTT TEXT
+                        </ReadingText>
+                        <InvertedReadingText>
+                        	INVERTED BUTT BABYBEE
+                        </InvertedReadingText>
+                    </PositionRelation>
+                    <PositionRelation>
+                        <SpreadIdRelation>
+                        	Mystic_Butt
+                        </SpreadIdRelation>
+                        
+                        <PositionIdRelation>
+                            5
+                        </PositionIdRelation>
+                        <ReadingText>
+                        	THE POSITION OF POOPING
+                        </ReadingText>
+                        <InvertedReadingText>
+                        	I SEE A BIG JUICY DICK IN UR FUTURE (MUCH LUCK!)
+                        </InvertedReadingText>
+                    </PositionRelation>
+                </PositionRelations>
+            </CardReadingRelations>
+        </Card>
+        <Card court="true">
+            <CardNumber>
+                1
+            </CardNumber>
+            <CardSuitId>
+                1
+            </CardSuitId>
+            
+            <CardName>
+                DO THIS CARD ONCE RELATIONS ENGINE COMPLETE
+            </CardName>
+            
+            <ShortDescription>SHORT DESCTIPTION</ShortDescription>
+            
+            <LongDescription>
+                LONG DESCRIPTION
+            </LongDescription>
+            
+            <ReadingText>
+                Bleep bloop.
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+            <CardFrontAsset type='png'>
+            	glarp_FRONT.png
+            </CardFrontAsset>
+            
+            <CardReadingRelations/>
+        </Card>
+    </Cards>
+</Deck>

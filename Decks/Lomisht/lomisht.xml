@@ -1,0 +1,846 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<Deck>
+    <DeckAttributes>
+        <DeckName>
+            The Lomisht
+        </DeckName>
+        
+        <!--Uniqueness requied-->
+        <DeckId>
+            LOMISHT_ENG
+        </DeckId>
+        
+        <DeckDescription>
+            The Lomisht is a Tarot deck themed and based on mythology of the Siasha faith from the world of Darisa. 
+        </DeckDescription>
+        
+        <!--ISO 639-2 Code-->
+        <Language>
+            eng
+        </Language>
+
+        <!--This is where your name goes as the creator of this file-->
+        <FileAuthor>
+            Draque Thompson
+        </FileAuthor>
+
+        <FileCopyrightDate>
+            January 1st 2021
+        </FileCopyrightDate>
+ 
+        <!--This is where the creator of the deck gets credit-->
+        <DeckAuthor>
+            Draque Thompson (design/world creation/writing), Karen Swartz (artwork/visual assets)
+        </DeckAuthor>
+        <DeckCopyrightDate>
+            
+        </DeckCopyrightDate>
+        
+        <!--Image type as attribute-->
+        <DeckBackAsset type='png'>
+            Other\back.png
+        </DeckBackAsset>
+    </DeckAttributes>
+    
+    <!--Define suits of your deck here. Arcana is stored as a suit, but marked with the arcana = true attribute-->
+    <Suits>
+        <Suit arcana="true">
+            <SuitName>
+                Greater Illumination
+            </SuitName>
+            
+            <!--Uniqueness requied: integer value-->
+            <SuitId>
+                0
+            </SuitId>
+            
+            <!--this is the description which will be given the first time the suit appears in a reading-->
+            <ShortDescription>
+            </ShortDescription>
+            
+            <SuitDescription>
+            </SuitDescription>
+        </Suit>
+        <Suit arcana="false">
+            <SuitName>
+                Fire
+            </SuitName>
+            
+            <!--Uniqueness requied: integer value-->
+            <SuitId>
+                1
+            </SuitId>
+            
+            <!--this is the description which will be given the first time the suit appears in a reading-->
+            <ShortDescription>
+            </ShortDescription>
+            
+            <SuitDescription>
+            </SuitDescription>
+        </Suit>
+        <Suit arcana="false">
+            <SuitName>
+                Water
+            </SuitName>
+            
+            <!--Uniqueness requied: integer value-->
+            <SuitId>
+                2
+            </SuitId>
+            
+            <!--this is the description which will be given the first time the suit appears in a reading-->
+            <ShortDescription>
+            </ShortDescription>
+            
+            <SuitDescription>
+            </SuitDescription>
+        </Suit>
+        
+        <Suit arcana="false">
+            <SuitName>
+                Wind
+            </SuitName>
+            
+            <!--Uniqueness requied: integer value-->
+            <SuitId>
+                3
+            </SuitId>
+            
+            <!--this is the description which will be given the first time the suit appears in a reading-->
+            <ShortDescription>
+            </ShortDescription>
+            
+            <SuitDescription>
+            </SuitDescription>
+        </Suit>
+        <Suit arcana="false">
+            <SuitName>
+                Wind
+            </SuitName>
+            
+            <!--Uniqueness requied: integer value-->
+            <SuitId>
+                4
+            </SuitId>
+            
+            <!--this is the description which will be given the first time the suit appears in a reading-->
+            <ShortDescription>
+            </ShortDescription>
+            
+            <SuitDescription>
+            </SuitDescription>
+        </Suit>
+    </Suits>
+    
+    <Cards>
+        <!-- GREATER ILLUMUNATION -->
+        <Card court="false">
+            <CardNumber>
+            	0
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	The Wanderer
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING WANDERER
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        
+        <Card court="false">
+            <CardNumber>
+            	1
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	Noreng, The Magician
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING NORENG
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	2
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	Lofsing, The Satguru
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING - LOFSING
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	3
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	Slumber, The Parturient
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING - Slumber
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	4
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	The Sire, The Emperine
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING - Sire
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	5
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	The Ward, The Heiriphant
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING, Ward
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	6
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	The Lovers
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING, Lovers
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	7
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	The Arch
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING, arch
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	8
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	Reku, Strength
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING, Strength
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	9
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	Kukung
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING, Kukung
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	10
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	The Fountain
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING, Fountain
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	11
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	The Sovereign, Justice
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING, Soveriegn
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+<!--        <Card court="false">
+            <CardNumber>
+            	12
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	The Altar
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	13
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	Death
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	14
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	The Healer
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	15
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	Rede Kufku
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	16
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	Broken Sedu
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	17
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	The Star
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	18
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	Sedu
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	19
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	Cikil
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	20
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	The Knot
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	21
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	Land
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	22
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	Dance
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	23
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	The Fugitive
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>
+        <Card court="false">
+            <CardNumber>
+            	24
+            </CardNumber>
+
+            <CardSuitId>
+            	0
+            </CardSuitId>
+            
+            <CardName>
+            	The Cave
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING
+            </ReadingText>
+            
+            <InvertedReadingText/>
+            
+                        
+            <CardReadingRelations/>
+        </Card>-->
+        
+        <!-- FIRE -->
+        <Card court="true">
+            <CardNumber>
+            	11
+            </CardNumber>
+
+            <CardSuitId>
+            	1
+            </CardSuitId>
+            
+            <CardName>
+            	Princet of Fire
+            </CardName>
+            
+            <ShortDescription/>
+            
+            <LongDescription>
+            </LongDescription>
+            
+            <ReadingText>
+            	TEST READING
+            </ReadingText>
+            
+            <SignificatorText>
+                TEST SIGNIFICATOR TEXT - PRINCET OF FIRE
+            </SignificatorText>
+            
+            <InvertedReadingText/>
+                                    
+            <CardReadingRelations/>
+        </Card>
+    </Cards>
+</Deck>
