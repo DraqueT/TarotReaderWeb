@@ -103,25 +103,35 @@ public class Card {
      */
     public List<String> Validate() {
         var problems = new ArrayList<String>();
+        var problemPrefix = "Card " + this.GetId() + ": ";
 
         if (getSuit() < 0) {
             problems.add("Suit id cannot be less than 0.");
         }
 
         if (getNumber() < 0) {
-            problems.add("Card number cannot be less than 0.");
+            problems.add(problemPrefix + "Card number cannot be less than 0.");
         }
 
         if (getName().trim().equals("")) {
-            problems.add("Cards must have name.");
+            problems.add(problemPrefix + "Cards must have name.");
         }
 
         if (getReadingText().trim().equals("")) {
-            problems.add("Cards must have a reading text.");
+            problems.add(problemPrefix + "Cards must have a reading text.");
         }
         
         if (isCourt() && significatorText.isBlank()) {
-            problems.add("Court cards must have significator text");
+            problems.add(problemPrefix + "Court cards must have significator text");
+        }
+        
+        var tagRegex = "(\\n|.)*\\[.*\\](\\n|.)*";
+        if (getInvertedReadingText().matches(tagRegex) ||
+                getLongDescription().matches(tagRegex) ||
+                getReadingText().matches(tagRegex) ||
+                getShortDescription().matches(tagRegex) ||
+                getSignificatorText().matches(tagRegex)) {
+            problems.add(problemPrefix + "Card text cannot contain unresolved tags");
         }
 
         for (var relation : getCardRelations()) {
@@ -291,7 +301,7 @@ public class Card {
     }
 
     public String getShortDescription() {
-        return shortDescription.isBlank() ? getLongDescription() : shortDescription;
+        return ReaderUtils.processTextTags(shortDescription.isBlank() ? getLongDescription() : shortDescription);
     }
 
     public void setShortInvertedReadingText(String _invertedReadingText) {
@@ -299,7 +309,7 @@ public class Card {
     }
 
     public String getInvertedReadingText() {
-        return invertedReadingText.isBlank() ? getReadingText() : invertedReadingText;
+        return ReaderUtils.processTextTags(invertedReadingText.isBlank() ? getReadingText() : invertedReadingText);
     }
     
     /**
@@ -334,14 +344,14 @@ public class Card {
      * @return the longDescription
      */
     public String getLongDescription() {
-        return longDescription;
+        return ReaderUtils.processTextTags(longDescription);
     }
 
     /**
      * @return the readingText
      */
     public String getReadingText() {
-        return readingText;
+        return ReaderUtils.processTextTags(readingText);
     }
 
     /**
@@ -425,6 +435,10 @@ public class Card {
         faceUp = _faceUp;
     }
     
+    public String getSignificatorText() {
+        return ReaderUtils.processTextTags(significatorText);
+    }
+    
     /**
      * Returns pairs of 
      * @param tableState
@@ -454,27 +468,13 @@ public class Card {
                 }
             }
         }
-        
-        var cardsShown = Arrays.asList(tableState.getFaceUpCards());
-        
-        // TODO: Add additional language in template file for various messages... including things like "Whithin the position of...." etc.
-//        for (var relation : cardRelations) {
-//            if (relation.getSuit() == ) { // check whether each card shown is a relation
-//                constructedReading.add(ReaderUtils.ReadingCardRelation);
-//                if (inverted) {
-//                    constructedReading.add(relation.getInvertedReadingText());
-//                } else {
-//                    constructedReading.add(relation.getReadingText());
-//                }
-//            }
-//        }
 
-        var cardRelations = new ArrayList<CardRelationValue>();
+        var priorRelatedCards = new ArrayList<CardRelationValue>();
         for (var priorCard : tableState.getFaceUpCards()) {
-            cardRelations.add(new CardRelationValue(priorCard.card, getCardRelationValue(priorCard, tableState)));
+            priorRelatedCards.add(new CardRelationValue(priorCard.card, getCardRelationValue(priorCard, tableState)));
         }
         
-        Collections.sort(cardRelations);
+        Collections.sort(priorRelatedCards);
         
         // Add relation readings
         // all relations with certain score are added as significant (in order of highest significance)
@@ -533,6 +533,8 @@ public class Card {
         
     }
 }
+
+// TODO: Add to all objects' validations that return any reading text - none should contain tags when returning text
 
 // TODO: The below
 /*

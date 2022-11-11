@@ -7,7 +7,10 @@ package org.darisadesigns;
 import java.util.AbstractList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.RandomAccess;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -165,6 +168,41 @@ public class ReaderUtils {
         public int size() {
             return list.getLength();
         }
+    }
+    
+    /**
+     * Parses text and replaces/parses relevant elements
+     * [showChance=X]TEXT[/showChance] <- Random chance (X%) to show or not show given text
+     * @param originText
+     * @return 
+     */
+    public static String processTextTags(String originText) {
+        final var numberPattern = Pattern.compile("\\d+");
+        Random rand = new Random();
+        var finalText = originText;
+        
+        // handle showchance
+        final var showChanceTagOpen = "\\[showChance=\\d*\\]";
+        final var showChanceTagClose = "\\[/showChance]";
+        final var showChancePattern = Pattern.compile("\\[showChance=\\d*](.|\\s)*?\\[/showChance]", Pattern.CASE_INSENSITIVE);
+        for (var tagMatch = showChancePattern.matcher(finalText); tagMatch.find(); tagMatch = showChancePattern.matcher(finalText)) {
+            var textMatch = tagMatch.group();
+            var numMatch = numberPattern.matcher(textMatch);
+            numMatch.find();
+            var pctShow = Integer.parseInt(numMatch.group());
+            var chance = rand.nextInt(99);
+            
+            if (pctShow > chance) {
+                // remove surrounding tags if test passes
+                finalText = finalText.replaceFirst(showChanceTagOpen, "");
+                finalText = finalText.replaceFirst(showChanceTagClose, "");
+            } else {
+                // remove entirely otherwise
+                finalText = finalText.replace(textMatch, "");
+            }
+        }
+               
+        return finalText;
     }
 
     private ReaderUtils() {

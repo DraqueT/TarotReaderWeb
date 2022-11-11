@@ -5,7 +5,6 @@
 package org.darisadesigns;
 
 import java.util.Arrays;
-import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -137,10 +136,99 @@ public class CardTest {
     {
         assertEquals(0, cardNoKeywords.getKeywords().length);
     }
-
+    
     @Test
-    public void TestGetReading()
-    {
-        // fail("implement this");
+    public void testCardLongTextTags() {
+        var initial = "blah[showChance=0]REMOVE[/showChance]";
+        var expected = "blah";
+        
+        var cardTags = new Card(
+                suit,
+                cardNum,
+                courtCard,
+                name,
+                initial,
+                shortDescription,
+                readingText,
+                invertedReadingText,
+                significatorText);
+        
+        assertEquals(expected, cardTags.getLongDescription());
+    }
+    
+    @Test
+    public void testCardShortTextTags() {
+        var initial = "blah[showChance=0]REMOVE[/showChance]";
+        var expected = "blah";
+        
+        var cardTags = new Card(
+                suit,
+                cardNum,
+                courtCard,
+                name,
+                longDescription,
+                initial,
+                readingText,
+                invertedReadingText,
+                significatorText);
+        
+        assertEquals(expected, cardTags.getShortDescription());
+    }
+    
+    @Test
+    public void testCardReadingTextTags() {
+        var initial = "blah[showChance=0]REMOVE[/showChance]";
+        var expected = "blah";
+        
+        var cardTags = new Card(
+                suit,
+                cardNum,
+                courtCard,
+                name,
+                longDescription,
+                shortDescription,
+                initial,
+                invertedReadingText,
+                significatorText);
+        
+        assertEquals(expected, cardTags.getReadingText());
+    }
+    
+    @Test
+    public void testCardInvertedTextTags() {
+        var initial = "blah[showChance=0]REMOVE[/showChance]";
+        var expected = "blah";
+        
+        var cardTags = new Card(
+                suit,
+                cardNum,
+                courtCard,
+                name,
+                longDescription,
+                shortDescription,
+                readingText,
+                initial,
+                significatorText);
+        
+        assertEquals(expected, cardTags.getInvertedReadingText());
+    }
+    
+    @Test
+    public void testCardSignificatorTextTags() {
+        var initial = "blah[showChance=0]REMOVE[/showChance]";
+        var expected = "blah";
+        
+        var cardTags = new Card(
+                suit,
+                cardNum,
+                courtCard,
+                name,
+                longDescription,
+                shortDescription,
+                readingText,
+                invertedReadingText,
+                initial);
+        
+        assertEquals(expected, cardTags.getSignificatorText());
     }
 }
