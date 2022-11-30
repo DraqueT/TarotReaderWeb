@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -144,22 +145,6 @@ public class Card {
 
         // TODO: Validate that appropriate asset exists for card and make appropriate error if not
         return problems;
-    }
-
-    // TODO: Figure out whether this should be an array return or just a string
-    public String[] GetCardReading(Spread spread) {
-        var reading = new ArrayList<String>();
-
-        if (isInverted() && !invertedReadingText.equals("")) {
-            reading.add(getInvertedReadingText());
-        } else {
-            reading.add(getReadingText());
-        }
-
-        // TODO: This is where logic for building readings from relations goes
-        // is it in a position with special text?
-        // any prior card of the same suit? - remember to refer to court cards based on pronooun field (only for court cards)
-        return reading.toArray(new String[0]);
     }
 
     @Override
@@ -440,7 +425,7 @@ public class Card {
     }
     
     /**
-     * Returns pairs of 
+     * Returns Segments of text to be read one at a time.
      * @param tableState
      * @param position
      * @return 
@@ -448,8 +433,8 @@ public class Card {
     public String[] getReading(TableState tableState, SpreadPosition position) {
         var constructedReading = new ArrayList<String>();
         
-        constructedReading.add(ReaderUtils.ReadingBase);
-        
+        // TODO: Rethink the strategy for non-significator readings. Consider that the short text might be better to give in cases such as having a specific relation to the spread position
+        // Currently it siply defaults to the full text to start with no matter what.
         if (position.isSignificator()) {
             constructedReading.add(significatorText);
         } else if (inverted) {
@@ -460,7 +445,6 @@ public class Card {
         
         for (var posRelation : positionRelations) {
             if (posRelation.getSpreadId().equals(tableState.spread.getSpreadId()) && posRelation.getPositionId() == position.getOrder()) {
-                constructedReading.add(ReaderUtils.ReadingPositionRelation);
                 if (inverted) {
                     constructedReading.add(posRelation.getInvertedReadingText());
                 } else {
@@ -471,19 +455,24 @@ public class Card {
 
         var priorRelatedCards = new ArrayList<CardRelationValue>();
         for (var priorCard : tableState.getFaceUpCards()) {
-            priorRelatedCards.add(new CardRelationValue(priorCard.card, getCardRelationValue(priorCard, tableState)));
+            priorRelatedCards.add(getCardRelationValue(priorCard, tableState));
         }
         
         Collections.sort(priorRelatedCards);
         
-        // Add relation readings
-        // all relations with certain score are added as significant (in order of highest significance)
-        // cards with explicit relation have ONLY the explicit relation text shown
-        // while all direct relatios are read (maybe make max?), beyond a certain point, cards with a relation value too low are ignored no matter what
-        // so long as there are any cards with relations at least one is added to readings
-        // each time a key appears, its significance in later cards has significantly increased value, meaning that streaks become more significant (store keyword bonus scores in tableState passed in)
+        // add relation readings so long as there are cards left and 
+        // a) the card relations are over the max threshhold, or 
+        // b) the are over the min threshhold and we haven't gone over the small relation limit yet
+        for (int i = 0; 
+                i < priorRelatedCards.size() && 
+                (priorRelatedCards.get(i).score > ReaderUtils.relationValueUpperThreshhold ||
+                (priorRelatedCards.get(i).score > ReaderUtils.relationValueLowerThreshhold && i < ReaderUtils.maxLowValueRelationRead));
+                i++) {
+            constructedReading.addAll(priorRelatedCards.get(i).text);
+        }
         
-        // TODO: Add to encountered keywords every time they are seen on a card, NOT just every time they are read
+        // TODO: cards with explicit relation have ONLY the explicit relation text shown
+        // TODO: so long as there are any cards with relations at least one is added to readings
         
         return constructedReading.toArray(new String[0]);
     }
@@ -493,37 +482,164 @@ public class Card {
      * - defined relation
      * - shared keywords
      * - shared suit
+     * - if cards are sequential
      * @param card
      * @return 
      */
-    private int getCardRelationValue(TableState.TablePosition tablePosition, TableState tableState) {
-        // TODO: Move the values below to a more logical place once they've been tweaked appropriately
-        // TODO: Tweak values
-        final int CARD_RELATION_VALUE = 15;
-                
+    private CardRelationValue getCardRelationValue(TableState.TablePosition tablePosition, TableState tableState) {
         int relValue = 0;
+        boolean directRelation = false;
+        List<String> text = new ArrayList<>();
         
         for (var relation : tablePosition.card.cardRelations) {
             if (relation.relationMatches(this)) {
-                relValue += CARD_RELATION_VALUE;
+                relValue += ReaderUtils.cardRelationValue;
+                directRelation = true;
+                text.add(tablePosition.card.inverted ? relation.getInvertedReadingText() : relation.getReadingText());
                 break;
             }
         }
         
-        // TODO: Add keyword values (remember to check prior occurances and feed this to the getRecurranceMultiplier function in DeckKeyword
+        var compKeywords = Arrays.asList(tablePosition.card.keywords);
         
-        // TODO: Add matching suit significance
+        var matchedKeywords = new ArrayList<WeightedKeyword>();
         
-        return relValue;
+        for (var keyword : keywords) {
+            tableState.keywordHit(keyword);
+            
+            if (compKeywords.contains(keyword)) {
+                var weight = tableState.getKeywordHitCount(keyword);
+                
+                // add keyword value TIMES multiplier based on num times keyword encountered
+                relValue += (ReaderUtils.keywordRelationValue * DeckKeyword.getRecurranceMultiplier(weight));
+                matchedKeywords.add(new WeightedKeyword(tableState.getDeck().getDeckKeywords().get(keyword), weight));
+            }
+        }
+        
+        if (!directRelation && matchedKeywords.size() > 0) {
+            Collections.sort(matchedKeywords);
+            var rand = new Random();
+            
+            var highWeight = matchedKeywords.get(0).weight;
+            var keywordsAdded = 0;
+            
+            for (var i = 0; i < matchedKeywords.size(); i++) {
+                var weightedKeyword = matchedKeywords.get(i);
+                
+                // for keywords with lesser weighted values, the chances that they will be explained is reduced (the chance is 1/diff of weight to max weight)
+                // number of keywords added cannot exceed max set
+                if (rand.nextInt(highWeight - weightedKeyword.weight) == 1
+                        || keywordsAdded >= ReaderUtils.maxKeywordsPerRelatedCard) {
+                    break;
+                }
+                
+                keywordsAdded++;
+                
+                // TODO: This text should be moved to the deck.xml file
+                // TODO: This phrase should have multiple possilbe ways to be said.
+                text.add(tablePosition.card.theCard(true) + " and " + theCard(false) + " both depict " + weightedKeyword.keyword.name + ", relating them to one another");
+                
+                // TODO: Depending on how many times the keyword has been seen, this should be commented on, something like "We're seeing the X symbol again... it seems significant."
+                
+                if (!tableState.isKeywordMentioned(weightedKeyword.keyword.name)) {
+                    text.add(weightedKeyword.keyword.keywordText);
+                }
+            }
+        }
+        
+        // arcana can have suit relations other than their own
+        if (tableState.getDeck().GetSuit(tablePosition.card.suit).isArcana()) {
+            var compSuits = new ArrayList<Integer>();
+            
+            for (var relSuit : tablePosition.card.getRelatedSuits()) {
+                compSuits.add(relSuit);
+            }
+            
+            // with two arcana, check related suits of both
+            if (tableState.getDeck().GetSuit(getSuit()).isArcana()) {
+                for (var relSuit : getRelatedSuits()) {
+                    if (compSuits.contains(relSuit)) {
+                        relValue += ReaderUtils.arcanaSuitRelationValue;
+                    }
+                }
+            } else if (compSuits.contains(getSuit())) {
+                relValue += ReaderUtils.arcanaSuitRelationValue;
+                
+                if (!directRelation) {
+                    // non arcana cards will have additional relational text added when matching suit
+                    // TODO: This should not be hardcoded. Move this to the deck.xml and update the template deck to reflect this
+                    text.add("The " + tablePosition.card.getName() + " care of the " + tableState.getDeck().GetSuit(tablePosition.card.getSuit()).getName() + 
+                            " is tied to the suit of " + tableState.getDeck().GetSuit(getSuit()).getName() + " matching this card.");
+                }
+            }
+        } else if (getSuit() == tablePosition.card.getSuit()) {
+            relValue += ReaderUtils.suitRelationValue;
+        }
+        
+        if (isSequential(tablePosition.card)) {
+            relValue += ReaderUtils.sequentialCardRelationValue;
+            if (!directRelation) {
+                // TODO: move to deck.xml
+                text.add(tablePosition.card.theCard(true) + " and " + theCard(false) + 
+                        " appear sequentially, implying that events surrounding them have causation in some regard.");
+            }
+        }
+
+        return new CardRelationValue(tablePosition.card, relValue, text);
+    }
+    
+    /**
+     * Returns a card the the word "the" prepended only if the card's name itself does not
+     * @param capitalize
+     * @return 
+     */
+    public String theCard(boolean capitalize) {
+        var ret = this.getName();
+        
+        if (!this.getName().toLowerCase().startsWith("the")) {
+            ret = (capitalize ? "The " : "the ") + ret;
+        }
+        
+        return ret;
+    }
+    
+    /**
+     * Returns true if the passed card is sequential
+     * (same suit, and one number off, but NOT across court cards)
+     * @param card
+     * @return 
+     */
+    
+    private boolean isSequential(Card card) {
+        return getSuit() == card.getSuit() &&
+                Math.abs(getNumber() - card.getNumber()) == 1 &&
+                !isCourt() && !card.isCourt();
+    }
+    
+    private class WeightedKeyword implements Comparable<WeightedKeyword> {
+        public final DeckKeyword keyword;
+        public final int weight;
+        
+        public WeightedKeyword(DeckKeyword _keyword, int _weight) {
+            keyword = _keyword;
+            weight = _weight;
+        }
+
+        @Override
+        public int compareTo(WeightedKeyword o) {
+            return weight == o.weight ? 0 : (weight < o.weight ? -1 : 1);
+        }
     }
     
     private class CardRelationValue implements Comparable<CardRelationValue> {
         public final int score;
         public final Card card;
+        public final List<String> text;
         
-        public CardRelationValue(Card _card, int _score) {
+        public CardRelationValue(Card _card, int _score, List<String> _text) {
             card = _card;
             score = _score;
+            text = _text;
         }
         
         @Override
@@ -556,6 +672,7 @@ Reading text:
     - Should cards with explicit relations ALWAYS be pointed out? Maybe.
 
 3) If a significant number of cards of this number (non arcana), suit, or with a particular keyword show up, make note of it. Past this point, make note each time the significant feature appears in the reading.
+    - name each card that has had this suit/symbol on it
 
 4) Always mention if the card has a suit affinity to the significator
 

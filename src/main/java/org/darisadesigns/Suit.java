@@ -41,6 +41,12 @@ public class Suit {
         if (getName().isBlank()) {
             problems.add("Suit must have a name");
         }
+        
+        var tagRegex = "(\\n|.)*\\[.*\\](\\n|.)*";
+        if (getDescription().matches(tagRegex) ||
+                getShortDescription().matches(tagRegex)) {
+            problems.add(name + " suit text cannot contain unresolved tags");
+        }
 
         return problems;
     }
@@ -83,14 +89,14 @@ public class Suit {
      * @return the Description
      */
     public String getDescription() {
-        return description;
+        return ReaderUtils.processTextTags(description);
     }
 
     /**
      * @return the ShortDescription
      */
     public String getShortDescription() {
-        return shortDescription;
+        return ReaderUtils.processTextTags(shortDescription);
     }
 
     /**

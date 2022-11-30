@@ -17,9 +17,18 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 
+// TODO: To enfore daily readings:
+// - 1 make a cookie on their local computer that expires in 24 hours
+//  -if this cookie exists and is unexpired, refuse to do another reading
+// - 2 Check if their IP address exists within a globally addressable map (static object on Application class)
+//  - if none exists, add (IP = key) an object to the map containing the current time and a value of 1
+//  - if one exists, but is > 24 hours old, delete and recreate as above
+//  - if one exists and is < 24 hours old, increment the counter by 1 (maybe up percentage chance if user agent string match identically?)
+//      - by random chance (maybe a chance of <COUNTER>/100?) display the message (Do you think I don't see you getting around the cookie for extra readings? It's for your sake that's there, not mine.)
+
 public class Application extends AbstractHandler
 {
-    private static String loadIndex(boolean debug) {
+//    private static String loadIndex(boolean debug) {
 //        try (BufferedReader reader = new BufferedReader(new InputStreamReader(Application.class.getResourceAsStream("/mainTemplate.html")))) {
 //            final StringBuilder page = new StringBuilder();
 //            String line;
@@ -33,8 +42,8 @@ public class Application extends AbstractHandler
 //        } catch (final Exception exception) {
 //            return getStackTrace(exception);
 //        }
-        return "ZOT";
-    }
+//        return "ZOT";
+//    }
 
     private static String getStackTrace(final Throwable throwable) {
         final StringWriter stringWriter = new StringWriter();
@@ -50,7 +59,12 @@ public class Application extends AbstractHandler
     }
 
     private void handleHttpRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.getWriter().println(loadIndex(request.getPathInfo().endsWith("debug")));
+        String ipAddress = request.getHeader("X-FORWARDED-FOR");  
+        if (ipAddress == null) {  
+            ipAddress = request.getRemoteAddr();  
+        }
+        
+        response.getWriter().println("ZOT: " + ipAddress + " - " + request.getHeader("User-Agent"));
     }
 
     @Override

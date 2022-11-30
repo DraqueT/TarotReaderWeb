@@ -17,7 +17,7 @@ public class TempTester {
             var spreadLoader = new SpreadLoader("Spreads/CelticCross.xml");
             var spread = spreadLoader.Load();
             
-            var table = new Table(deck, spread);
+            var table = new Table(deck, spread, new Card[]{deck.GetCourtCards()[0]});
             
             table.ReadAll();
         } catch (Exception e) {

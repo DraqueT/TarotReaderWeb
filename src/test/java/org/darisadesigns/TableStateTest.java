@@ -20,7 +20,7 @@ public class TableStateTest {
         try {
             spread = new SpreadLoader("src/test/resources/TestSpread.xml").Load();
             deck = new DeckLoader("src/test/resources/TestLomisht.xml").LoadDeck();
-            tableState = new TableState(deck, spread);
+            tableState = new TableState(deck, spread, new Card[]{deck.GetCourtCards()[0]});
         } catch (Exception e) {
             fail(e.getLocalizedMessage());
         }

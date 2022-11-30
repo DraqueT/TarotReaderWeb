@@ -122,7 +122,7 @@ public class DeckLoader {
         }
 
         for (var keyword : deckKeywords) {
-            deck.getDeckKeywords().put(keyword.keyword, keyword);
+            deck.getDeckKeywords().put(keyword.name, keyword);
         }
     }
 

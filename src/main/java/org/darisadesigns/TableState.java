@@ -22,6 +22,7 @@ public class TableState {
     private final Card[] significators;
     private final Map<String, Integer> keywordHits;
     private final List<String> keywordsMentioned;
+    private final Deck deck;
 
     /**
      * 
@@ -30,13 +31,14 @@ public class TableState {
      * @param _significators Significators to pre-set with selected values (applied in order)
      * @throws Exception 
      */
-    public TableState(Deck _deck, Spread _spread) throws Exception
+    public TableState(Deck _deck, Spread _spread, Card[] _significators) throws Exception
     {
         positions = new ArrayList<>();
         deckPosition = 0;
         cardStack = _deck.GetShuffledCards();
         spread = _spread;
-        significators = _deck.GetCourtCards();
+        deck = _deck;
+        significators = _significators;
         cardStack.removeAll(Arrays.asList(significators));
         keywordHits = new HashMap<>();
         keywordsMentioned = new ArrayList<>();
@@ -151,5 +153,9 @@ public class TableState {
     {
         public Card card;
         public SpreadPosition spreadPositon;
+    }
+
+    public Deck getDeck() {
+        return deck;
     }
 }

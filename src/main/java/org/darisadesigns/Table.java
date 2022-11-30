@@ -13,8 +13,8 @@ public class Table {
     private final TableState tableState;
     private int position = 0;
 
-    public Table(Deck _deck, Spread _spread) throws Exception {
-        tableState = new TableState(_deck, _spread);
+    public Table(Deck _deck, Spread _spread, Card[] significators) throws Exception {
+        tableState = new TableState(_deck, _spread, significators);
     }
 
     public void ReadAll() {

@@ -70,6 +70,12 @@ public class CardRelation {
         {
             problems.add("Relations must have a reading text.");
         }
+        
+        var tagRegex = "(\\n|.)*\\[.*\\](\\n|.)*";
+        if (getReadingText().matches(tagRegex) || 
+                getInvertedReadingText().matches(tagRegex)) {
+            problems.add("Relation text cannot contain unresolved tags");
+        }
 
         return problems;
     }
@@ -105,11 +111,11 @@ public class CardRelation {
     }
     
     public String getReadingText() {
-        return readingText;
+        return ReaderUtils.processTextTags(readingText);
     }
 
     public String getInvertedReadingText()
     {
-        return invertedReadingText.isBlank() ? readingText : invertedReadingText; 
+        return ReaderUtils.processTextTags(invertedReadingText.isBlank() ? readingText : invertedReadingText); 
     }
 }

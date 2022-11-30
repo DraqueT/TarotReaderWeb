@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version='1.0' encoding='UTF-8' ?> 
 <Deck>
     <DeckAttributes>
     	<!--TEST COMMENTS DON'T CRASH THINGS-->
@@ -50,6 +50,38 @@
     	<DeckKeywordDescription>
     		<DeckKeyword>
     			butt
+    		</DeckKeyword>
+    		<DeckKeywordText>
+    			big ol' sweatybutt
+    		</DeckKeywordText>
+    	</DeckKeywordDescription>
+        <DeckKeywordDescription>
+    		<DeckKeyword>
+    			Zim
+    		</DeckKeyword>
+    		<DeckKeywordText>
+    			big ol' sweatybutt
+    		</DeckKeywordText>
+    	</DeckKeywordDescription>
+        <DeckKeywordDescription>
+    		<DeckKeyword>
+    			Zam
+    		</DeckKeyword>
+    		<DeckKeywordText>
+    			big ol' sweatybutt
+    		</DeckKeywordText>
+    	</DeckKeywordDescription>
+        <DeckKeywordDescription>
+    		<DeckKeyword>
+    			m'bam  and
+    		</DeckKeyword>
+    		<DeckKeywordText>
+    			big ol' sweatybutt
+    		</DeckKeywordText>
+    	</DeckKeywordDescription>
+        <DeckKeywordDescription>
+    		<DeckKeyword>
+    			thank you ma'am
     		</DeckKeyword>
     		<DeckKeywordText>
     			big ol' sweatybutt
@@ -253,6 +285,10 @@
             </CardFrontAsset>
             
             <CardReadingRelations/>
+            
+            <SignificatorText>
+                I am significant.
+            </SignificatorText>
         </Card>
     </Cards>
 </Deck>

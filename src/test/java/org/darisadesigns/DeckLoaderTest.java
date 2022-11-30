@@ -45,7 +45,12 @@ public class DeckLoaderTest {
         try {
             DeckLoader loader = new DeckLoader("src/test/resources/TestDeck.xml");
             Deck deck = loader.LoadDeck();
-            assert (deck.IsValid());
+            
+            var problems = deck.Validate();
+            
+            if (!problems.isEmpty()) {
+                fail(problems.get(0));
+            }
 
             assertEquals("Poopo M'goo", deck.getDeckAuthor());
             assertEquals("Tomorrow", deck.getDeckCopyright());
@@ -55,7 +60,7 @@ public class DeckLoaderTest {
             assertEquals("TESTO_MCBESTO", deck.getId());
             assertEquals("eng", deck.getLangId());
             assertEquals("TestDeck", deck.getName());
-            assertEquals(2, deck.getDeckKeywords().size());
+            assertEquals(6, deck.getDeckKeywords().size());
             assertEquals("cleans your woerm of sin wash it away", deck.getDeckKeywords().get("woerm").keywordText);
             assertEquals("big ol' sweatybutt", deck.getDeckKeywords().get("butt").keywordText);
 

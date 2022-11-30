@@ -142,14 +142,9 @@ public class Deck {
      *
      * @param suitId
      * @return
-     * @throws java.lang.Exception If suit id DNE.
      */
-    public Suit GetSuit(int suitId) throws Exception {
-        if (getSuits().containsKey(suitId)) {
-            return getSuits().get(suitId);
-        }
-
-        throw new Exception("Unable to find suit with id: " + suitId);
+    public Suit GetSuit(int suitId) {
+        return getSuits().get(suitId);
     }
 
     public boolean IsValid() {
@@ -173,6 +168,10 @@ public class Deck {
 //        }
         for (var card : cards.values()) {
             problems.addAll(card.Validate());
+            
+            if (!getSuits().containsKey(card.getSuit())) {
+                problems.add(card.GetId() + " card is of suit not defined in the deck.");
+            }
         }
 
         for (var keyword : deckKeywords.values()) {
@@ -353,7 +352,7 @@ public class Deck {
      * @return the Description
      */
     public String getDescription() {
-        return description;
+        return ReaderUtils.processTextTags(description);
     }
 
     /**
@@ -367,14 +366,14 @@ public class Deck {
      * @return the FileAuthor
      */
     public String getFileAuthor() {
-        return fileAuthor;
+        return ReaderUtils.processTextTags(fileAuthor);
     }
 
     /**
      * @return the FileCopyright
      */
     public String getFileCopyright() {
-        return fileCopyright;
+        return ReaderUtils.processTextTags(fileCopyright);
     }
 
     /**
@@ -388,14 +387,14 @@ public class Deck {
      * @return the DeckAuthor
      */
     public String getDeckAuthor() {
-        return deckAuthor;
+        return ReaderUtils.processTextTags(deckAuthor);
     }
 
     /**
      * @return the DeckCopyright
      */
     public String getDeckCopyright() {
-        return deckCopyright;
+        return ReaderUtils.processTextTags(deckCopyright);
     }
 
     /**

@@ -5,11 +5,11 @@
 package org.darisadesigns;
 
 import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.RandomAccess;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -144,10 +144,29 @@ public class ReaderUtils {
     public static final String textConstant = "#text";
     public static final String firstLine = "Well, I suppose you found this. It'll only get you a bit, but have fun!";
     
-    // reading Segments
-    public static final String ReadingBase = "ReadingBase";
-    public static final String ReadingCardRelation = "ReadingCardRelation";
-    public static final String ReadingPositionRelation = "ReadingPositionRelation";
+    // TODO: Consider putting these balues into the deck
+    // TODO: Add values other than 0
+    // relation values
+    public static final int cardRelationValue = 0;
+    public static final int suitRelationValue = 0;
+    public static final int keywordRelationValue = 0;
+    public static final int arcanaSuitRelationValue = 0;
+    public static final int sequentialCardRelationValue = 0;
+    
+    // relations above this are guaranteed to be read
+    public static final int relationValueUpperThreshhold = cardRelationValue;
+    
+    // relations above this will be read only if too many prior relations have not already been read (below this, they are never read)
+    public static final int relationValueLowerThreshhold = cardRelationValue;
+    
+    // cutoff, after which lower value relations will not be read
+    public static final int maxLowValueRelationRead = 2;
+    
+    // TODO: Consider putting this into the deck xml
+    // Max keyword relations that can be described per card relation
+    public static final int maxKeywordsPerRelatedCard = 3;
+    
+    public static final double keywordReccuranceGrowthValue = 1.3;
 
     public static List<Node> asList(NodeList n) {
         return n.getLength() == 0 ? Collections.<Node>emptyList() : new NodeListWrapper(n);
@@ -170,21 +189,89 @@ public class ReaderUtils {
         }
     }
     
+    final static Pattern numberPattern = Pattern.compile("\\d+");
+    
     /**
      * Parses text and replaces/parses relevant elements
-     * [showChance=X]TEXT[/showChance] <- Random chance (X%) to show or not show given text
+     * 
      * @param originText
      * @return 
      */
     public static String processTextTags(String originText) {
-        final var numberPattern = Pattern.compile("\\d+");
-        Random rand = new Random();
+        var finalText = originText;
+        
+        finalText = processTextTaxShowChance(finalText);
+        finalText = processTextWeightedMultiPossibility(finalText);
+        
+        return finalText;
+    }
+    
+    /**
+     * [multiposs]X=<TEXT1>|Y=<TEXT2>|Z=<TEXT3>[/multiposs]
+     * X, Y and Z are the weighs that any given text will be shown, and can be any 
+     * integer values. There can be as many texts as you like.
+     * @param originText
+     * @return 
+     */
+    public static String processTextWeightedMultiPossibility(String originText) {
+        var finalText = originText;
+        
+        var rand = new Random();
+        final var tagOpen = "\\[multiposs\\]";
+        final var tagClose = "\\[/multiposs\\]";
+        final var fullTag = tagOpen + "(.|\\s)*?" + tagClose;
+        final var tagPattern = Pattern.compile(fullTag);
+        
+        for (var tagMatch = tagPattern.matcher(finalText); tagMatch.find(); tagMatch = tagPattern.matcher(finalText)) {
+            try {
+                var textMatch = tagMatch.group();
+                var phrases = textMatch.split("\\|");
+
+                var totalWeight = 0;
+                var weightList = new ArrayList<Integer>();
+                var textList = new ArrayList<String>();
+
+                for (var phrase : phrases) {
+                    var split = phrase.split("=");
+                    var weight = Integer.parseInt(split[0].replaceFirst(tagOpen, ""));
+                    var text = split[1].replaceFirst(tagClose, "");
+
+                    totalWeight += weight;
+                    weightList.add(totalWeight);
+                    textList.add(text);
+                }
+
+                var randomWeight = rand.nextInt(totalWeight);
+
+                for (var i = 0; i < weightList.size(); i++) {
+                    if (randomWeight < weightList.get(i)) {
+                        finalText = finalText.replaceFirst(fullTag, textList.get(i));
+                        break;
+                    }
+                }
+            } catch (Exception e) {
+                // malformed cases should be ignored - the will be found and reporte at time of validation, as their tags are not replaced
+            }
+        }
+
+        return finalText;
+    }
+    
+    /**
+     * [showChance=X]TEXT[/showChance] <- Random chance (X%) to show or not show given text
+     * @param originText
+     * @return 
+     */
+    public static String processTextTaxShowChance(String originText) {
+        var rand = new Random();
         var finalText = originText;
         
         // handle showchance
         final var showChanceTagOpen = "\\[showChance=\\d*\\]";
-        final var showChanceTagClose = "\\[/showChance]";
-        final var showChancePattern = Pattern.compile("\\[showChance=\\d*](.|\\s)*?\\[/showChance]", Pattern.CASE_INSENSITIVE);
+        final var showChanceTagClose = "\\[/showChance\\]";
+        final var showChancePattern = Pattern.compile(showChanceTagOpen + "(.|\\s)*?" + showChanceTagClose, Pattern.CASE_INSENSITIVE);
+        
+        // loop until no instances of tags exist
         for (var tagMatch = showChancePattern.matcher(finalText); tagMatch.find(); tagMatch = showChancePattern.matcher(finalText)) {
             var textMatch = tagMatch.group();
             var numMatch = numberPattern.matcher(textMatch);

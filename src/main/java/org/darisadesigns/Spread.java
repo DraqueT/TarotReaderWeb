@@ -107,6 +107,11 @@ public class Spread {
                 break;
             }
         }
+        
+        var tagRegex = "(\\n|.)*\\[.*\\](\\n|.)*";
+        if (getDescription().matches(tagRegex)) {
+            problems.add("Spread text cannot contain unresolved tags");
+        }
 
         return problems;
     }
@@ -122,7 +127,7 @@ public class Spread {
      * @return the description
      */
     public String getDescription() {
-        return description;
+        return ReaderUtils.processTextTags(description);
     }
 
     /**

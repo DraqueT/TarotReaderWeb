@@ -13,25 +13,25 @@ import java.util.Objects;
  * @author draqu
  */
 public class DeckKeyword {
-    public final String keyword;
+    public final String name;
     public final String keywordText;
 
     public DeckKeyword(String keyword, String keywordText)
     {
-        this.keyword = keyword;
+        this.name = keyword;
         this.keywordText = keywordText;
     }
 
     public boolean IsValid()
     {
-        return !keyword.isBlank() && keywordText.isBlank();
+        return !name.isBlank() && keywordText.isBlank();
     }
 
     public List<String> Validate()
     {
         var problems = new ArrayList<String>();
 
-        if (keyword.isBlank())
+        if (name.isBlank())
         {
             problems.add("Blank deck level keyword");
         }
@@ -51,17 +51,14 @@ public class DeckKeyword {
      * @return 
      */
     public static double getRecurranceMultiplier(int occurances) {
-        // TODO: Tweak value: Put value in more reasonable place. A higher number allows for low significance keywords to quickly gain significance
-        final double REOCURRANCE_GROWTH = 1.3;
-        
-        return Math.pow(REOCURRANCE_GROWTH, (double)occurances); 
+        return Math.pow(ReaderUtils.keywordReccuranceGrowthValue, (double)occurances); 
     }
     
     @Override
     public boolean equals(Object obj)
     {
         if (obj != null && obj instanceof DeckKeyword deckKeyword) {
-            return keyword.equals(deckKeyword.keyword) && keywordText.equals(deckKeyword.keywordText);
+            return name.equals(deckKeyword.name) && keywordText.equals(deckKeyword.keywordText);
         }
         
         return false;
@@ -70,7 +67,7 @@ public class DeckKeyword {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 31 * hash + Objects.hashCode(this.keyword);
+        hash = 31 * hash + Objects.hashCode(this.name);
         return hash;
     }
 }
