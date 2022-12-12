@@ -42,9 +42,9 @@ public class Suit {
             problems.add("Suit must have a name");
         }
         
-        var tagRegex = "(\\n|.)*\\[.*\\](\\n|.)*";
-        if (getDescription().matches(tagRegex) ||
-                getShortDescription().matches(tagRegex)) {
+        
+        if (ReaderUtils.containsTags(getDescription()) ||
+                ReaderUtils.containsTags(getShortDescription())) {
             problems.add(name + " suit text cannot contain unresolved tags");
         }
 

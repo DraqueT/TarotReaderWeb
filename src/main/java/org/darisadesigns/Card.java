@@ -434,7 +434,7 @@ public class Card {
         var constructedReading = new ArrayList<String>();
         
         // TODO: Rethink the strategy for non-significator readings. Consider that the short text might be better to give in cases such as having a specific relation to the spread position
-        // Currently it siply defaults to the full text to start with no matter what.
+        // Currently it simply defaults to the full text to start with no matter what.
         if (position.isSignificator()) {
             constructedReading.add(significatorText);
         } else if (inverted) {
@@ -442,6 +442,8 @@ public class Card {
         } else {
             constructedReading.add(readingText);
         }
+        
+        // TODO: The first time a suit is encountered, its description should be read.
         
         for (var posRelation : positionRelations) {
             if (posRelation.getSpreadId().equals(tableState.spread.getSpreadId()) && posRelation.getPositionId() == position.getOrder()) {
@@ -463,16 +465,24 @@ public class Card {
         // add relation readings so long as there are cards left and 
         // a) the card relations are over the max threshhold, or 
         // b) the are over the min threshhold and we haven't gone over the small relation limit yet
-        for (int i = 0; 
-                i < priorRelatedCards.size() && 
+        int i = 0;
+        for (;i < priorRelatedCards.size() && 
                 (priorRelatedCards.get(i).score > ReaderUtils.relationValueUpperThreshhold ||
                 (priorRelatedCards.get(i).score > ReaderUtils.relationValueLowerThreshhold && i < ReaderUtils.maxLowValueRelationRead));
                 i++) {
             constructedReading.addAll(priorRelatedCards.get(i).text);
         }
         
-        // TODO: cards with explicit relation have ONLY the explicit relation text shown
-        // TODO: so long as there are any cards with relations at least one is added to readings
+        if (i == 0) {
+            if (priorRelatedCards.size() > 0) {
+                // if no prior relations at all, at least add something nominal if it exists
+                constructedReading.addAll(priorRelatedCards.get(i).text);
+            } else if (!position.isSignificator() && position.getOrder() > 1) {
+                // If this card is neither the significator nor one of the first two cards, display this message
+                // TODO: Put this into the deck.xml
+                constructedReading.add("There don't seem to be any related cards showing to this one yet.");
+            }
+        }
         
         return constructedReading.toArray(new String[0]);
     }
@@ -650,7 +660,6 @@ public class Card {
     }
 }
 
-// TODO: Add to all objects' validations that return any reading text - none should contain tags when returning text
 
 // TODO: The below
 /*

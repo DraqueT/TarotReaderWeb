@@ -65,7 +65,6 @@ public class DeckLoader {
      *
      * @return @throws Exception On problem loading file
      */
-    // TODO: Should this not be incorporated into the method above?
     public Deck LoadDeck() throws Exception {
         var deckNode = document.getElementsByTagName(ReaderUtils.XMLNodeDeck);
 

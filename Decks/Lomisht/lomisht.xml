@@ -35,11 +35,6 @@
         <DeckCopyrightDate>
             
         </DeckCopyrightDate>
-        
-        <!--Image type as attribute-->
-        <DeckBackAsset type='png'>
-            Other\back.png
-        </DeckBackAsset>
     </DeckAttributes>
     
     <!--Define suits of your deck here. Arcana is stored as a suit, but marked with the arcana = true attribute-->
@@ -73,9 +68,11 @@
             
             <!--this is the description which will be given the first time the suit appears in a reading-->
             <ShortDescription>
+                The suit of Fire is the suit of action.
             </ShortDescription>
             
             <SuitDescription>
+                The suit of Fire is the suit of action and activity, of strong will and its application to the world. Readings from the suit of Fire emphasize what is done, how victories are attained, and how [multiposs]3=bodily wellness|1=physical vitality[/multiposs]. In [multiposs]1=many|1=some|1=more traditional[/multiposs] decks, the suit of Fire is represented by staves, rods, wands, or clubs. It is associated with the south.
             </SuitDescription>
         </Suit>
         <Suit arcana="false">
@@ -812,9 +809,9 @@
         </Card>-->
         
         <!-- FIRE -->
-        <Card court="true">
+        <Card court="false">
             <CardNumber>
-            	11
+            	0
             </CardNumber>
 
             <CardSuitId>
@@ -822,21 +819,20 @@
             </CardSuitId>
             
             <CardName>
-            	Princet of Fire
+            	Zero of Fire
             </CardName>
             
             <ShortDescription/>
-            
+                
             <LongDescription>
+                The zero cards within this deck are nonstandard, and do not appear in more traditional decks. 
             </LongDescription>
             
             <ReadingText>
-            	TEST READING
+            	
             </ReadingText>
             
-            <SignificatorText>
-                TEST SIGNIFICATOR TEXT - PRINCET OF FIRE
-            </SignificatorText>
+            <SignificatorText/>
             
             <InvertedReadingText/>
                                     

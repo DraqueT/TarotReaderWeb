@@ -43,7 +43,11 @@ public class Table {
             System.out.println("\n");
             System.out.println(curPos.spreadPositon.getDescription());
             System.out.println("Card: " + curPos.card.getName());
-            System.out.println(curPos.card.getReading(tableState, curPos.spreadPositon));
+            
+            for (var s : curPos.card.getReading(tableState, curPos.spreadPositon)) {
+                System.out.println(s);
+            }
+            
 
             position++;
         }

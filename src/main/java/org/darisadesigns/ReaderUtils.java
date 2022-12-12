@@ -144,14 +144,13 @@ public class ReaderUtils {
     public static final String textConstant = "#text";
     public static final String firstLine = "Well, I suppose you found this. It'll only get you a bit, but have fun!";
     
-    // TODO: Consider putting these balues into the deck
-    // TODO: Add values other than 0
+    // TODO: Consider putting these values into the deck
     // relation values
-    public static final int cardRelationValue = 0;
-    public static final int suitRelationValue = 0;
-    public static final int keywordRelationValue = 0;
-    public static final int arcanaSuitRelationValue = 0;
-    public static final int sequentialCardRelationValue = 0;
+    public static final int cardRelationValue = 15;
+    public static final int suitRelationValue = 3;
+    public static final int keywordRelationValue = 2;
+    public static final int arcanaSuitRelationValue = 5;
+    public static final int sequentialCardRelationValue = 3;
     
     // relations above this are guaranteed to be read
     public static final int relationValueUpperThreshhold = cardRelationValue;
@@ -290,6 +289,16 @@ public class ReaderUtils {
         }
                
         return finalText;
+    }
+    
+    /**
+     * Tests whether text has tags remaining in it
+     * @param text
+     * @return 
+     */
+    public static boolean containsTags(String text) {
+        var tagRegex = "(\\n|.)*\\[.*\\](\\n|.)*";
+        return text.matches(tagRegex);
     }
 
     private ReaderUtils() {
